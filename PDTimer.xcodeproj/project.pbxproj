@@ -15,6 +15,7 @@
 		EC8F716D20BC2ADD00112975 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F716C20BC2ADD00112975 /* main.m */; };
 		EC8F717720BC2ADD00112975 /* PDTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F717620BC2ADD00112975 /* PDTimerTests.m */; };
 		EC8F718220BC2ADD00112975 /* PDTimerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F718120BC2ADD00112975 /* PDTimerUITests.m */; };
+		EC8F719220BC2AED00112975 /* PDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F719120BC2AED00112975 /* PDTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		EC8F717D20BC2ADD00112975 /* PDTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8F718120BC2ADD00112975 /* PDTimerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDTimerUITests.m; sourceTree = "<group>"; };
 		EC8F718320BC2ADD00112975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC8F719020BC2AED00112975 /* PDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDTimer.h; sourceTree = "<group>"; };
+		EC8F719120BC2AED00112975 /* PDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		EC8F715C20BC2ADC00112975 /* PDTimer */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F718F20BC2AE200112975 /* Source */,
 				EC8F715D20BC2ADC00112975 /* AppDelegate.h */,
 				EC8F715E20BC2ADC00112975 /* AppDelegate.m */,
 				EC8F716020BC2ADC00112975 /* ViewController.h */,
@@ -130,6 +134,15 @@
 				EC8F718320BC2ADD00112975 /* Info.plist */,
 			);
 			path = PDTimerUITests;
+			sourceTree = "<group>";
+		};
+		EC8F718F20BC2AE200112975 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EC8F719020BC2AED00112975 /* PDTimer.h */,
+				EC8F719120BC2AED00112975 /* PDTimer.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC8F716220BC2ADC00112975 /* ViewController.m in Sources */,
+				EC8F719220BC2AED00112975 /* PDTimer.m in Sources */,
 				EC8F716D20BC2ADD00112975 /* main.m in Sources */,
 				EC8F715F20BC2ADC00112975 /* AppDelegate.m in Sources */,
 			);
