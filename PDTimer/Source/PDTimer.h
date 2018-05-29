@@ -12,12 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PDTimer : NSObject
 
-- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(dispatch_block_t)block;
+- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats
+                               block:(dispatch_block_t)block; // Callback in main queue.
 
-- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(dispatch_block_t)block inQueue:(dispatch_queue_t)queue;
+- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats
+                               block:(dispatch_block_t)block
+                             inQueue:(dispatch_queue_t)queue; // Callback in specified queue.
 
 - (void)fire;
-
 - (void)invalidate;
 
 @end

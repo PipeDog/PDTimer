@@ -20,11 +20,16 @@
     [self invalidate];
 }
 
-- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(dispatch_block_t)block {
-    return [self initWithTimeInterval:interval repeats:repeats block:block inQueue:dispatch_get_main_queue()];
+- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats
+                               block:(dispatch_block_t)block {
+    return [self initWithTimeInterval:interval repeats:repeats
+                                block:block
+                              inQueue:dispatch_get_main_queue()];
 }
 
-- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(dispatch_block_t)block inQueue:(dispatch_queue_t)queue {
+- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats
+                               block:(dispatch_block_t)block
+                             inQueue:(dispatch_queue_t)queue {
     self = [super init];
     if (self) {
         _source = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
