@@ -38,7 +38,8 @@
         __weak typeof(self) weakSelf = self;
         dispatch_source_set_event_handler(_source, ^{
             if (!repeats) {
-                [weakSelf invalidate];
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                if (strongSelf) [strongSelf invalidate];
             }
             if (block) block();
         });

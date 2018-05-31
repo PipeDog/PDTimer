@@ -19,7 +19,6 @@
 
 - (void)dealloc {
     [_timer invalidate];
-    NSLog(@"%@", self);
 }
 
 - (void)viewDidLoad {
