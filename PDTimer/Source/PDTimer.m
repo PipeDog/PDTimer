@@ -55,7 +55,7 @@
 
 - (void)invalidate {
     if (_source) {
-        dispatch_cancel(_source);
+        dispatch_source_cancel(_source);
         _source = nil;
     }
 }
