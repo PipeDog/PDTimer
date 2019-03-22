@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC14E35E2244D0B100C757DE /* PDGlobalTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC14E35D2244D0B100C757DE /* PDGlobalTimer.m */; };
 		EC8F715F20BC2ADC00112975 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F715E20BC2ADC00112975 /* AppDelegate.m */; };
 		EC8F716220BC2ADC00112975 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F716120BC2ADC00112975 /* ViewController.m */; };
 		EC8F716520BC2ADC00112975 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F716320BC2ADC00112975 /* Main.storyboard */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC14E35C2244D0B100C757DE /* PDGlobalTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDGlobalTimer.h; sourceTree = "<group>"; };
+		EC14E35D2244D0B100C757DE /* PDGlobalTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDGlobalTimer.m; sourceTree = "<group>"; };
 		EC8F715A20BC2ADC00112975 /* PDTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8F715D20BC2ADC00112975 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EC8F715E20BC2ADC00112975 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 			children = (
 				EC8F719020BC2AED00112975 /* PDTimer.h */,
 				EC8F719120BC2AED00112975 /* PDTimer.m */,
+				EC14E35C2244D0B100C757DE /* PDGlobalTimer.h */,
+				EC14E35D2244D0B100C757DE /* PDGlobalTimer.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				EC8F716220BC2ADC00112975 /* ViewController.m in Sources */,
 				EC8F719220BC2AED00112975 /* PDTimer.m in Sources */,
 				EC8F716D20BC2ADD00112975 /* main.m in Sources */,
+				EC14E35E2244D0B100C757DE /* PDGlobalTimer.m in Sources */,
 				EC8F715F20BC2ADC00112975 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
