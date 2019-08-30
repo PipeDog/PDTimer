@@ -30,7 +30,6 @@
     _timer = [[PDTimer alloc] initWithTimeInterval:1.f leeway:0.01f queue:dispatch_get_main_queue() block:^{
         NSLog(@"time block, %@", [NSThread currentThread]);
     }];
-    
 }
 
 - (IBAction)fire:(id)sender {
