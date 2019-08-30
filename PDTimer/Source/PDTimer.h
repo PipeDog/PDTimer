@@ -12,12 +12,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PDTimer : NSObject
 
-- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats
-                               block:(dispatch_block_t)block; // Callback in main queue.
-
-- (instancetype)initWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats
-                               block:(dispatch_block_t)block
-                             inQueue:(dispatch_queue_t)queue; // Callback in specified queue.
+/*
+ * @param ti
+ * The number of seconds between firings of the timer.
+ *
+ * @param leeway
+ * The seconds leeway for the timer.
+ *
+ * @param queue
+ * The dispatch queue to which the event handler block will be submitted.
+ *
+ * @param block
+ * The registration handler block to submit to the source's target queue.
+ */
+- (instancetype)initWithTimeInterval:(NSTimeInterval)ti
+                              leeway:(NSTimeInterval)leeway
+                               queue:(dispatch_queue_t)queue
+                               block:(dispatch_block_t)block;
 
 - (void)fire;
 - (void)invalidate;

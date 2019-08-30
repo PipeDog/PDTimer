@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import "PDTimer.h"
+#import "PDGlobalDisplayLink.h"
 
-@interface ViewController ()
+@interface ViewController () <PDGlobalDisplayLinkDelegate>
 
 @property (nonatomic, strong) PDTimer *timer;
 
@@ -19,32 +20,44 @@
 
 - (void)dealloc {
     [_timer invalidate];
+    NSLog(@"%@ => dealloc", self);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    _timer = [[PDTimer alloc] initWithTimeInterval:1.f repeats:YES block:^{
+
+    _timer = [[PDTimer alloc] initWithTimeInterval:1.f leeway:0.01f queue:dispatch_get_main_queue() block:^{
         NSLog(@"time block, %@", [NSThread currentThread]);
-    } inQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    }];
+    
+}
+
+- (IBAction)fire:(id)sender {
     [_timer fire];
 }
 
-- (IBAction)didClickPushButton:(id)sender {
+- (IBAction)invalidate:(id)sender {
+    [_timer invalidate];
+}
+
+- (IBAction)bind:(id)sender {
+    [[PDGlobalDisplayLink globalDisplayLink] bind:self];
+}
+
+- (IBAction)unbind:(id)sender {
+    [[PDGlobalDisplayLink globalDisplayLink] unbind:self];
+}
+
+- (IBAction)push:(id)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"VC"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)didClickInvalidButton:(id)sender {
-    [_timer invalidate];
+#pragma mark - PDGlobalDisplayLinkDelegate
+- (void)tick:(CADisplayLink *)displayLink {
+    NSLog(@"%.4f", [NSDate date].timeIntervalSince1970);
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end

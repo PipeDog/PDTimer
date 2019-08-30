@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f7u-xa-j6U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f7u-xa-j6U">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,35 +18,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9i-ax-HFm">
-                                <rect key="frame" x="113" y="318" width="148" height="30"/>
-                                <state key="normal" title="Push"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSz-IL-rBp">
+                                <rect key="frame" x="30" y="107" width="156" height="30"/>
+                                <color key="backgroundColor" red="0.73303067980000003" green="1" blue="0.95130637969999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="156" id="JPV-m1-oQp"/>
+                                    <constraint firstAttribute="height" constant="30" id="zsc-Ta-fLW"/>
+                                </constraints>
+                                <state key="normal" title="fire"/>
                                 <connections>
-                                    <action selector="didClickPushButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hcN-H5-LXd"/>
+                                    <action selector="fire:" destination="BYZ-38-t0r" eventType="touchUpInside" id="weo-RQ-bjk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-XD-bJK">
-                                <rect key="frame" x="113" y="395" width="148" height="30"/>
+                                <rect key="frame" x="201" y="107" width="148" height="30"/>
+                                <color key="backgroundColor" red="0.73303067980000003" green="1" blue="0.95130637969999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bcL-gF-9Yt"/>
+                                    <constraint firstAttribute="width" constant="148" id="fVP-OO-4gp"/>
+                                </constraints>
                                 <state key="normal" title="invalid"/>
                                 <connections>
-                                    <action selector="didClickInvalidButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AZW-5f-gbC"/>
+                                    <action selector="invalidate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aky-Qh-1KT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrq-Pu-UHE">
+                                <rect key="frame" x="30" y="175" width="156" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0v4-xi-DQ0"/>
+                                    <constraint firstAttribute="width" constant="156" id="r2b-xX-c92"/>
+                                </constraints>
+                                <state key="normal" title="displayLink begin"/>
+                                <connections>
+                                    <action selector="bind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E3j-p0-DcF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONU-Yl-SFf">
+                                <rect key="frame" x="201" y="175" width="148" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="7MZ-3O-nug"/>
+                                    <constraint firstAttribute="height" constant="30" id="z7h-0T-0x8"/>
+                                </constraints>
+                                <state key="normal" title="displayLink stop"/>
+                                <connections>
+                                    <action selector="unbind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwX-yc-se1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pdv-XD-bJK" secondAttribute="trailing" constant="114" id="GIJ-jM-KSm"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J9i-ax-HFm" secondAttribute="trailing" constant="114" id="Glq-YI-r5N"/>
-                            <constraint firstItem="pdv-XD-bJK" firstAttribute="top" secondItem="J9i-ax-HFm" secondAttribute="bottom" constant="47" id="LSU-CC-gYb"/>
-                            <constraint firstItem="J9i-ax-HFm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="YGs-ly-4JW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J9i-ax-HFm" secondAttribute="bottom" constant="319" id="m6W-CD-kKX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pdv-XD-bJK" secondAttribute="bottom" constant="242" id="rzC-eH-ens"/>
-                            <constraint firstItem="pdv-XD-bJK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="sPG-0i-bRS"/>
-                            <constraint firstItem="J9i-ax-HFm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="254" id="tyt-B5-krr"/>
+                            <constraint firstItem="pdv-XD-bJK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="43" id="Gsp-HA-lBW"/>
+                            <constraint firstItem="ONU-Yl-SFf" firstAttribute="top" secondItem="pdv-XD-bJK" secondAttribute="bottom" constant="38" id="K20-mR-6bw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pdv-XD-bJK" secondAttribute="trailing" constant="26" id="RMr-lQ-poq"/>
+                            <constraint firstItem="SSz-IL-rBp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Za9-f6-YBd"/>
+                            <constraint firstItem="Lrq-Pu-UHE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="ceh-2c-fXT"/>
+                            <constraint firstItem="Lrq-Pu-UHE" firstAttribute="top" secondItem="SSz-IL-rBp" secondAttribute="bottom" constant="38" id="eNC-NQ-Tvk"/>
+                            <constraint firstItem="SSz-IL-rBp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="43" id="eZU-KZ-OzQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ONU-Yl-SFf" secondAttribute="trailing" constant="26" id="h4o-pw-IQq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EHy-SD-vSZ"/>
+                    <navigationItem key="navigationItem" id="EHy-SD-vSZ">
+                        <barButtonItem key="rightBarButtonItem" title="Push" id="LWN-Hf-QFv">
+                            <connections>
+                                <action selector="push:" destination="BYZ-38-t0r" id="b31-Lq-P71"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
