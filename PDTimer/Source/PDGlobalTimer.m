@@ -22,7 +22,7 @@
     PDWeakTimer *weakTimer = [[PDWeakTimer alloc] init];
     weakTimer->_block = [block copy];
     weakTimer->_timer = [NSTimer timerWithTimeInterval:interval target:weakTimer selector:@selector(tick:) userInfo:nil repeats:repeats];
-    [[NSRunLoop currentRunLoop] addTimer:weakTimer->_timer forMode:NSRunLoopCommonModes];
+    [[NSRunLoop mainRunLoop] addTimer:weakTimer->_timer forMode:NSRunLoopCommonModes];
     return weakTimer;
 }
 
