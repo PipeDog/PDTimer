@@ -7,40 +7,7 @@
 //
 
 #import "PDGlobalTimer.h"
-
-@implementation PDWeakTimer {
-@private
-    NSTimer *_timer;
-    void (^_block)(void);
-}
-
-- (void)dealloc {
-    [self invalidate];
-}
-
-+ (PDWeakTimer *)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(void))block {
-    PDWeakTimer *weakTimer = [[PDWeakTimer alloc] init];
-    weakTimer->_block = [block copy];
-    weakTimer->_timer = [NSTimer timerWithTimeInterval:interval target:weakTimer selector:@selector(tick:) userInfo:nil repeats:repeats];
-    [[NSRunLoop mainRunLoop] addTimer:weakTimer->_timer forMode:NSRunLoopCommonModes];
-    return weakTimer;
-}
-
-- (void)tick:(NSTimer *)sender {
-    !_block ?: _block();
-}
-
-- (void)fire {
-    [_timer fire];
-    !_block ?: _block();
-}
-
-- (void)invalidate {
-    [_timer invalidate];
-    _timer = nil;
-}
-
-@end
+#import "PDTimer.h"
 
 typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
     PDGlobalTimerDelegateOptionsNone         = 0,
@@ -50,7 +17,7 @@ typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
 };
 
 @interface PDGlobalTimer () {
-    PDWeakTimer *_timer;
+    PDTimer *_timer;
 }
 
 @property (nonatomic, strong) NSHashTable<id<PDGlobalTimerDelegate>> *delegates;
@@ -66,9 +33,11 @@ typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
     dispatch_once(&onceToken, ^{
         __globalTimer = [PDGlobalTimer new];
         __weak typeof(__globalTimer) __weakGlobalTimer = __globalTimer;
-        __globalTimer->_timer = [PDWeakTimer timerWithTimeInterval:1.f repeats:YES block:^{
+        __globalTimer->_timer = [[PDTimer alloc] initWithTimeInterval:1.f leeway:0.f queue:dispatch_get_main_queue() block:^{
             __strong typeof(__weakGlobalTimer) __strongGlobalTimer = __weakGlobalTimer;
-            [__strongGlobalTimer tick];
+            if (__strongGlobalTimer) {
+                [__strongGlobalTimer tick];
+            }
         }];
     });
     return __globalTimer;

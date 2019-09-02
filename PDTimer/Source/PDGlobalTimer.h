@@ -10,15 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PDWeakTimer : NSObject
-
-+ (PDWeakTimer *)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(void))block;
-
-- (void)fire;
-- (void)invalidate;
-
-@end
-
 @class PDGlobalTimer;
 
 @protocol PDGlobalTimerDelegate <NSObject>
