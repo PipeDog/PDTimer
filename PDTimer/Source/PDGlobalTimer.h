@@ -19,17 +19,19 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 // Callback interval, the requirement is a positive integer, default is 1.
 @property (nonatomic, assign) NSTimeInterval timeInterval;
-// The last callback timestamp.
-@property (nonatomic, assign) NSTimeInterval preTimestamp;
 
 @end
 
 @interface PDGlobalTimer : NSObject
 
 @property (class, strong, readonly) PDGlobalTimer *globalTimer;
+@property (nonatomic, assign, getter=isRunning, readonly) BOOL running;
 
 - (void)bind:(id<PDGlobalTimerDelegate>)delegate;
 - (void)unbind:(id<PDGlobalTimerDelegate>)delegate;
+
+- (void)fire;
+- (void)invalidate;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;

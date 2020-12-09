@@ -7,13 +7,13 @@
 //
 
 #import "PDGlobalTimer.h"
+#import <objc/runtime.h>
 #import "PDTimer.h"
 
 typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
     PDGlobalTimerDelegateOptionsNone         = 0,
     PDGlobalTimerDelegateOptionsTick         = 1 << 0,
     PDGlobalTimerDelegateOptionsTimeInterval = 1 << 1,
-    PDGlobalTimerDelegateOptionsPreTimestamp = 1 << 2,
 };
 
 @interface PDGlobalTimer () {
@@ -27,52 +27,48 @@ typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
 
 @implementation PDGlobalTimer
 
+@synthesize running = _running;
+
 + (PDGlobalTimer *)globalTimer {
     static PDGlobalTimer *__globalTimer;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __globalTimer = [PDGlobalTimer new];
-        __weak typeof(__globalTimer) __weakGlobalTimer = __globalTimer;
-        __globalTimer->_timer = [[PDTimer alloc] initWithTimeInterval:1.f leeway:0.f queue:dispatch_get_main_queue() block:^{
-            __strong typeof(__weakGlobalTimer) __strongGlobalTimer = __weakGlobalTimer;
-            if (__strongGlobalTimer) {
-                [__strongGlobalTimer tick];
-            }
-        }];
+        __globalTimer = [[self alloc] init];
     });
     return __globalTimer;
 }
 
-- (void)tick {
-    NSTimeInterval curTimestamp = [NSDate date].timeIntervalSince1970;
-    
-    for (id<PDGlobalTimerDelegate>delegate in [self.delegates setRepresentation]) {
-        NSNumber *number = [self.impls objectForKey:delegate];
-        if (!number) { continue; }
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        __weak typeof(self) weakSelf = self;
+        _timer = [[PDTimer alloc] initWithTimeInterval:1.f leeway:0.f queue:dispatch_get_main_queue() block:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf) { return; }
+            
+            [strongSelf tick];
+        }];
         
-        PDGlobalTimerDelegateOptions options = [number unsignedIntegerValue];
-        
-        if (!(options & PDGlobalTimerDelegateOptionsTick)) {
-            continue;
-        }
-        
-        if (!(options & PDGlobalTimerDelegateOptionsTimeInterval) ||
-            !(options & PDGlobalTimerDelegateOptionsPreTimestamp)) {
-            [delegate tick:self]; continue;
-        }
-        
-        NSTimeInterval preTimestamp = delegate.preTimestamp;
-        NSTimeInterval diff = curTimestamp - preTimestamp;
-        
-        static NSTimeInterval const bias = 0.01f;
-        
-        if (fabs(diff - delegate.timeInterval) < bias || preTimestamp < bias) {
-            [delegate tick:self];
-        }
+        _running = NO;
     }
+    return self;
 }
 
-#pragma mark - Binding Methods
+#pragma mark - Public Methods
+- (void)fire {
+    if (self.isRunning) { return; }
+    
+    _running = YES;
+    [self->_timer fire];
+}
+
+- (void)invalidate {
+    if (!self.isRunning) { return; }
+    
+    _running = NO;
+    [self->_timer invalidate];
+}
+
 - (void)bind:(id<PDGlobalTimerDelegate>)delegate {
     if ([self.delegates containsObject:delegate]) return;
     
@@ -86,15 +82,43 @@ typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
     if ([delegate respondsToSelector:@selector(timeInterval)]) {
         options |= PDGlobalTimerDelegateOptionsTimeInterval;
     }
-    if ([delegate respondsToSelector:@selector(preTimestamp)]) {
-        options |= PDGlobalTimerDelegateOptionsPreTimestamp;
-    }
     
     [self.impls setObject:@(options) forKey:delegate];
 }
 
 - (void)unbind:(id<PDGlobalTimerDelegate>)delegate {
     if (delegate) [self.delegates removeObject:delegate];
+}
+
+#pragma mark - Private Methods
+- (void)tick {
+    NSTimeInterval curTimestamp = [NSDate date].timeIntervalSince1970;
+    
+    for (id<PDGlobalTimerDelegate>delegate in [self.delegates setRepresentation]) {
+        NSNumber *number = [self.impls objectForKey:delegate];
+        if (!number) { continue; }
+        
+        PDGlobalTimerDelegateOptions options = [number unsignedIntegerValue];
+        
+        if (!(options & PDGlobalTimerDelegateOptionsTick)) {
+            continue;
+        }
+        
+        if (!(options & PDGlobalTimerDelegateOptionsTimeInterval)) {
+            [delegate tick:self]; continue;
+        }
+        
+        static const char *preTimestampKey = "preTimestampKey";
+        NSTimeInterval preTimestamp = [objc_getAssociatedObject(delegate, preTimestampKey) doubleValue];
+        NSTimeInterval diff = curTimestamp - preTimestamp;
+        NSTimeInterval bias = MIN(delegate.timeInterval / 10.f, 0.2f);
+        bias = MAX(bias, 0.05f); // 0.05s ~ 0.2s
+        
+        if (fabs(diff - delegate.timeInterval) < bias || preTimestamp < bias || diff > delegate.timeInterval) {
+            objc_setAssociatedObject(delegate, preTimestampKey, @(curTimestamp), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            [delegate tick:self];
+        }
+    }
 }
 
 #pragma mark - Getter Methods
