@@ -8,9 +8,8 @@
 
 #import "ViewController.h"
 #import "PDTimer.h"
-#import "PDGlobalDisplayLink.h"
 
-@interface ViewController () <PDGlobalDisplayLinkDelegate>
+@interface ViewController ()
 
 @property (nonatomic, strong) PDTimer *timer;
 
@@ -40,23 +39,10 @@
     [_timer invalidate];
 }
 
-- (IBAction)bind:(id)sender {
-    [[PDGlobalDisplayLink globalDisplayLink] bind:self];
-}
-
-- (IBAction)unbind:(id)sender {
-    [[PDGlobalDisplayLink globalDisplayLink] unbind:self];
-}
-
 - (IBAction)push:(id)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"VC"];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-#pragma mark - PDGlobalDisplayLinkDelegate
-- (void)tick:(CADisplayLink *)displayLink {
-    NSLog(@"%.4f", [NSDate date].timeIntervalSince1970);
 }
 
 @end

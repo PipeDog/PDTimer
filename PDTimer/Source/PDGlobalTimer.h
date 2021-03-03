@@ -33,10 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)fire;
 - (void)invalidate;
 
-+ (instancetype)allocWithZone:(struct _NSZone *)zone NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (id)copy NS_UNAVAILABLE;
-- (id)mutableCopy NS_UNAVAILABLE;
 
 @end
 

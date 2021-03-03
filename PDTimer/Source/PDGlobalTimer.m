@@ -29,12 +29,24 @@ typedef NS_OPTIONS(NSUInteger, PDGlobalTimerDelegateOptions) {
 
 @synthesize running = _running;
 
+static PDGlobalTimer *__globalTimer;
+
 + (PDGlobalTimer *)globalTimer {
-    static PDGlobalTimer *__globalTimer;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __globalTimer = [[self alloc] init];
+        if (__globalTimer == nil) {
+            __globalTimer = [[self alloc] init];
+        }
     });
+    return __globalTimer;
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    @synchronized (self) {
+        if (__globalTimer == nil) {
+            __globalTimer = [super allocWithZone:zone];
+        }
+    }
     return __globalTimer;
 }
 

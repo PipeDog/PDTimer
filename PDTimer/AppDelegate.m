@@ -7,16 +7,28 @@
 //
 
 #import "AppDelegate.h"
+#import "PDGlobalTimer.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <PDGlobalTimerDelegate>
 
 @end
 
 @implementation AppDelegate
 
+@synthesize timeInterval = _timeInterval;
+
+- (void)tick:(PDGlobalTimer *)timer {
+    NSLog(@"%.2f", [NSDate date].timeIntervalSince1970);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.timeInterval = 3.f;
+    
+    [[PDGlobalTimer globalTimer] bind:self];
+    [[PDGlobalTimer globalTimer] fire];
+    
     return YES;
 }
 

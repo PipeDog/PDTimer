@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f7u-xa-j6U">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f7u-xa-j6U">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSz-IL-rBp">
-                                <rect key="frame" x="30" y="107" width="156" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSz-IL-rBp">
+                                <rect key="frame" x="30" y="87" width="156" height="30"/>
                                 <color key="backgroundColor" red="0.73303067980000003" green="1" blue="0.95130637969999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="156" id="JPV-m1-oQp"/>
@@ -30,8 +28,8 @@
                                     <action selector="fire:" destination="BYZ-38-t0r" eventType="touchUpInside" id="weo-RQ-bjk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-XD-bJK">
-                                <rect key="frame" x="201" y="107" width="148" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-XD-bJK">
+                                <rect key="frame" x="201" y="87" width="148" height="30"/>
                                 <color key="backgroundColor" red="0.73303067980000003" green="1" blue="0.95130637969999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bcL-gF-9Yt"/>
@@ -42,43 +40,15 @@
                                     <action selector="invalidate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aky-Qh-1KT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrq-Pu-UHE">
-                                <rect key="frame" x="30" y="175" width="156" height="30"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0v4-xi-DQ0"/>
-                                    <constraint firstAttribute="width" constant="156" id="r2b-xX-c92"/>
-                                </constraints>
-                                <state key="normal" title="displayLink begin"/>
-                                <connections>
-                                    <action selector="bind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E3j-p0-DcF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONU-Yl-SFf">
-                                <rect key="frame" x="201" y="175" width="148" height="30"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="7MZ-3O-nug"/>
-                                    <constraint firstAttribute="height" constant="30" id="z7h-0T-0x8"/>
-                                </constraints>
-                                <state key="normal" title="displayLink stop"/>
-                                <connections>
-                                    <action selector="unbind:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwX-yc-se1"/>
-                                </connections>
-                            </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pdv-XD-bJK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="43" id="Gsp-HA-lBW"/>
-                            <constraint firstItem="ONU-Yl-SFf" firstAttribute="top" secondItem="pdv-XD-bJK" secondAttribute="bottom" constant="38" id="K20-mR-6bw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pdv-XD-bJK" secondAttribute="trailing" constant="26" id="RMr-lQ-poq"/>
                             <constraint firstItem="SSz-IL-rBp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Za9-f6-YBd"/>
-                            <constraint firstItem="Lrq-Pu-UHE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="ceh-2c-fXT"/>
-                            <constraint firstItem="Lrq-Pu-UHE" firstAttribute="top" secondItem="SSz-IL-rBp" secondAttribute="bottom" constant="38" id="eNC-NQ-Tvk"/>
                             <constraint firstItem="SSz-IL-rBp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="43" id="eZU-KZ-OzQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ONU-Yl-SFf" secondAttribute="trailing" constant="26" id="h4o-pw-IQq"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="EHy-SD-vSZ">
                         <barButtonItem key="rightBarButtonItem" title="Push" id="LWN-Hf-QFv">
@@ -98,7 +68,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f7u-xa-j6U" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O3X-fN-HoO">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
